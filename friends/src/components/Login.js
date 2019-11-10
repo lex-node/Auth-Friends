@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {axiosWithAuth} from "../axiosWithAuth";
 
 const Login = (props) => {
-    const [credentials, setCredentials] = useState({});
+    const [credentials, setCredentials] = useState({username: '', password: ''});
 
     const login = e => {
         e.preventDefault();

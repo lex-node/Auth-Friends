@@ -10,7 +10,7 @@ const FriendsList = () => {
         .then(res => {
             setFriends(res.data);
             setNewFriend({...newFriend, id: res.data.length + 1});
-        })
+        }, [])
 
 
     const handleChange = e => {

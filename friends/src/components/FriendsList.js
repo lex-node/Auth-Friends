@@ -9,7 +9,7 @@ const FriendsList = () => {
     axiosWithAuth().get('http://localhost:5000/api/friends')
         .then(res => {
             setFriends(res.data);
-            setNewFriend({...newFriend, id: res.data.length + 1});
+/*            setNewFriend({...newFriend, id: res.data.length + 1});*/
         }, [])
 
 
@@ -21,8 +21,12 @@ const FriendsList = () => {
     const addFriend = e => {
         //    initial cheap version, adds friend to state instead of posting to server through API
         e.preventDefault();
-        setFriends([...friends, newFriend]);
-
+        /*setFriends([...friends, newFriend]);*/
+        axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
+        .then(res => {
+            console.log("derp");
+             setNewFriend({id: 0, name: "", age: "", email: ""});
+        })
         /*  * **[POST]** to `/api/friends`: creates a friend and return the new list of friends. Pass the friend as the `body` of the request (the second argument passed to `axios.post`).*/
     }
 

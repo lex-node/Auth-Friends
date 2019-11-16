@@ -3,7 +3,7 @@
 Topics:
 
 * React Router
-* Protected Routes
+* FriendsList Routes
 * `axios` package
 * AJAX
 * Promises

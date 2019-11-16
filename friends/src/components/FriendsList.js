@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {axiosWithAuth} from "../axiosWithAuth";
 
 const FriendsList = () => {
@@ -6,37 +6,37 @@ const FriendsList = () => {
 
     const [newFriend, setNewFriend] = useState({id: 0, name: "", age: "", email: ""});
 
-    axiosWithAuth().get('http://localhost:5000/api/friends')
-        .then(res => {
-            setFriends(res.data);
-/*            setNewFriend({...newFriend, id: res.data.length + 1});*/
-        }, [])
-
+    useEffect(() => {
+        axiosWithAuth().get('http://localhost:5000/api/friends')
+            .then(res => {
+                setFriends(res.data);
+            })
+}, [friends]);
 
     const handleChange = e => {
-        setNewFriend({...newFriend, [e.target.name]: e.target.value})
+        setNewFriend({...newFriend, id: friends.length + 1, [e.target.name]: e.target.value});
         console.log(newFriend);
     }
 
     const addFriend = e => {
         e.preventDefault();
         axiosWithAuth().post('http://localhost:5000/api/friends', newFriend)
-        .then(res => {
-            console.log("derp");
-             setNewFriend({id: 0, name: "", age: "", email: ""});
-        })
+            .then(res => {
+                setNewFriend({id: 0, name: "", age: "", email: ""});
+            })
     }
 
     return (
         <div>
             <h1>Congrats, dork! You have some friends.</h1>
             <ul>
-                {friends.map(friend => {
-                    return (
-                        <li key={friend.id}>{friend.name} is {friend.age} years old and can be reached
-                            at {friend.email}</li>
-                    )
-                })
+                {
+                    friends.map(friend => {
+                        return (
+                            <li key={friend.id}>{friend.name} is {friend.age} years old and can be reached
+                                at {friend.email}</li>
+                        )
+                    })
 
                 }
             </ul>

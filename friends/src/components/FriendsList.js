@@ -43,8 +43,7 @@ const FriendsList = () => {
             <h2>Have you made any new friends since the last time? Add them here!</h2>
             <form onSubmit={addFriend}>
                 Friend Name: <input type="text" name="name" value={newFriend.name} onChange={handleChange}/>
-                Friend Age (Just Put Numerals): <input type="number" name="age" value={newFriend.age}
-                                                       onChange={handleChange}/>
+                Friend Age (Just Put Numerals): <input type="number" name="age" value={newFriend.age} onChange={handleChange}/>
                 Friend Email: <input type="email" name="email" value={newFriend.email} onChange={handleChange}/>
                 <button>Submit</button>
             </form>
